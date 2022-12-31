@@ -7,6 +7,9 @@ public class UserBean {
 	private String email;
 	private String password;
 	private String authToken;
+	private String otp;
+	private String createdAt;
+	private Integer role;
 	
 	public String getAuthToken() {
 		return authToken;
