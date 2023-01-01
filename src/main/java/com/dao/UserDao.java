@@ -13,7 +13,9 @@ public class UserDao {
 	JdbcTemplate stmt;
 	
 	public void addUser(UserBean user) {
-		stmt.update("insert into users (firstName,password,email) values (?,?,?)",user.getFirstName(),user.getPassword(),user.getEmail());
+		//stmt.update("insert into users (firstName,password,email)"+ " values (?,?,?)",user.getFirstName(),user.getPassword(),user.getEmail());
+		stmt.update("insert into users (firstname , email , password, createdAt,role) values (?,?,?,?,?)", user.getFirstName(),
+				user.getEmail(), user.getPassword(),user.getCreatedAt(),user.getRole());
 	}
 
 	public UserBean getUserByEmail(String email) {
@@ -32,5 +34,12 @@ public class UserDao {
 		stmt.update("update users set authToken = ? where email = ? ",authToken,email);
 		
 	}
+	public void updateOtp(String email, String otp) {
+		stmt.update("update users set otp = ? where email = ?",otp,email);
+	}
+	public void updatePass(String email, String enc) {
+		stmt.update("update users set password = ? where email = ?",enc,email);
+	}
+	
 	
 }
